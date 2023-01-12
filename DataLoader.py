@@ -18,15 +18,15 @@ class DataLoader:
 
     def load_from_files(self) -> object:
         with open('Data/routes.json', 'r', encoding='utf8') as f:
-            self.routes = json.load(f, encoding='utf8')
+            self.routes = json.load(f)
         with open('Data/departures.json', 'r', encoding='utf8') as f:
-            self.departures = json.load(f, encoding='utf8')
+            self.departures = json.load(f)
         with open('Data/stops.json', 'r', encoding='utf8') as f:
-            self.stops = json.load(f, encoding='utf8')
+            self.stops = json.load(f)
         with open('Data/trips.json', 'r', encoding='utf8') as f:
-            self.trips = json.load(f, encoding='utf8')
+            self.trips = json.load(f)
         with open('Data/stopsintrip.json', 'r', encoding='utf8') as f:
-            self.stopsintrip = json.load(f, encoding='utf8')
+            self.stopsintrip = json.load(f)
         return self
 
     def create_stop_dict(self):
