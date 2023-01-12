@@ -1,16 +1,14 @@
-# This is a sample Python script.
+import webservice
+import user_input
+import path_finder
+from DataLoader import DataLoader
+from pprint import pprint
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+data_loader = DataLoader().full_prepare()
+webService = webservice.Webservice()
+path_finder = path_finder.PathFinder(data_loader)
+user_input = user_input.UserInput(data_loader, path_finder)
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    user_input.are_stops_connected_dialogue()
+    pass
