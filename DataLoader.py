@@ -1,5 +1,6 @@
 import json
 from pprint import pprint
+from tqdm import tqdm
 
 
 class DataLoader:
@@ -14,7 +15,8 @@ class DataLoader:
         self.trips_stops = None
 
     def full_prepare(self):
-        self.load_from_files().create_stop_dict().create_stop_dict()
+        self.load_from_files().create_stop_dict().create_route_trip()
+        self.create_trips_stops()
         return self
 
     def load_from_files(self) -> object:
@@ -31,20 +33,35 @@ class DataLoader:
         return self
 
     def create_trips_stops(self):
-        a = {x['tripId ']: [] for x in self.trips['2023-01-12']['trips']}
-        # for x in a:
+        route_trip = dict(self.route_trip)
+        self.trips_stops = dict()
+        for z in tqdm(route_trip.keys()):
+            for y in route_trip[z]:
+                a = [x for x in self.stopsintrip['2023-01-12']['stopsInTrip'] if
+                     x['tripId'] == y and x['routeId'] == z]
+                a = sorted(a, key=lambda x: x['stopSequence'], reverse=False)
+                names = [x['stopId'] for x in a]
+                self.trips_stops.update({(z, y): names})
 
-        self.trips_stops = a
+        return self
+
+    def route_finder(self, id1, id2):
+        ways = []
+        for r, t in self.trips_stops.keys():
+            trip = self.trips_stops[(r, t)]
+            if id1 in trip and id2 in trip:
+                ways.append((r, t))
+        return ways
 
     def create_stop_dict(self):
         self.stop_dict = {x['stopId']:x for x in self.stops['2023-01-12']['stops']}
-        # print(stop_dict)
         return self
 
     def create_route_trip(self):
         route_trip = {x['routeId']: [] for x in self.routes['2023-01-12']['routes']}
         for x in self.trips['2023-01-12']['trips']:
             route_trip.update({x['routeId']: route_trip[x['routeId']] + [x['tripId']]})
+        self.route_trip = route_trip
         return self
 
     def r_t_route(self, r_id, t_id):
@@ -69,4 +86,6 @@ class DataLoader:
 
 if __name__ == "__main__":
     dl = DataLoader().full_prepare()
-    dl.test()
+    # pprint(dl.trips_stops)
+    print(dl.route_finder(39140, 40309))
+    # dl.test()
