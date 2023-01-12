@@ -5,14 +5,14 @@ from tqdm import tqdm
 
 class DataLoader:
     def __init__(self):
-        self.route_trip = None
+        self.route_trip = None  # dict ze wszystkimi route i przynależących do nich tripów w formie listy
         self.routes = None
         self.departures = None
         self.stops = None
         self.trips = None
         self.stopsintrip = None
-        self.stop_dict = None
-        self.trips_stops = None
+        self.stop_dict = None  # dict informacji o stopach, klucze to stopID
+        self.trips_stops = None # dict, kluczem jest krokta (routeID, tripID), wartość to lista stopID na trasie
 
     def full_prepare(self):
         self.load_from_files().create_stop_dict().create_route_trip()
@@ -49,7 +49,7 @@ class DataLoader:
         ways = []
         for r, t in self.trips_stops.keys():
             trip = self.trips_stops[(r, t)]
-            if id1 in trip and id2 in trip:
+            if id1 in trip and id2 in trip and trip.index(id1) < trip.index(id2):
                 ways.append((r, t))
         return ways
 
@@ -87,5 +87,9 @@ class DataLoader:
 if __name__ == "__main__":
     dl = DataLoader().full_prepare()
     # pprint(dl.trips_stops)
-    print(dl.route_finder(39140, 40309))
+    print(dl.route_finder(292, 209))
+    print(dl.route_finder(209, 292))
+    # for x in dl.stop_dict.keys():
+    #     if dl.stop_dict[x]['stopName'] == 'Miszewskiego':
+    #         pprint(dl.stop_dict[x])
     # dl.test()
