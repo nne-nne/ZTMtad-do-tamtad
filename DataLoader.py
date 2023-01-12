@@ -11,6 +11,7 @@ class DataLoader:
         self.trips = None
         self.stopsintrip = None
         self.stop_dict = None
+        self.trips_stops = None
 
     def full_prepare(self):
         self.load_from_files().create_stop_dict().create_stop_dict()
@@ -18,16 +19,22 @@ class DataLoader:
 
     def load_from_files(self) -> object:
         with open('Data/routes.json', 'r', encoding='utf8') as f:
-            self.routes = json.load(f, encoding='utf8')
+            self.routes = json.load(f)
         with open('Data/departures.json', 'r', encoding='utf8') as f:
-            self.departures = json.load(f, encoding='utf8')
+            self.departures = json.load(f)
         with open('Data/stops.json', 'r', encoding='utf8') as f:
-            self.stops = json.load(f, encoding='utf8')
+            self.stops = json.load(f)
         with open('Data/trips.json', 'r', encoding='utf8') as f:
-            self.trips = json.load(f, encoding='utf8')
+            self.trips = json.load(f)
         with open('Data/stopsintrip.json', 'r', encoding='utf8') as f:
-            self.stopsintrip = json.load(f, encoding='utf8')
+            self.stopsintrip = json.load(f)
         return self
+
+    def create_trips_stops(self):
+        a = {x['tripId ']: [] for x in self.trips['2023-01-12']['trips']}
+        # for x in a:
+
+        self.trips_stops = a
 
     def create_stop_dict(self):
         self.stop_dict = {x['stopId']:x for x in self.stops['2023-01-12']['stops']}
