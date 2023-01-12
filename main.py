@@ -9,6 +9,5 @@ user_input = user_input.UserInput(data_loader)
 
 
 if __name__ == '__main__':
-    #pprint(data_loader.stop_dict)
-    user_input.are_stops_connected_dialogue()
+    user_input.departures_dialogue()
     pass

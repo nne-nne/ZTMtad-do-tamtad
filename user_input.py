@@ -14,6 +14,12 @@ class UserInput:
         print("your route:")
         print(self.dataLoader.stop_dict[stop_1_id]['stopDesc'], '->', self.dataLoader.stop_dict[stop_2_id]['stopDesc'])
 
+        # TODO calculate if stops are connected
+        # TODO print answer
 
-
-
+    def departures_dialogue(self):
+        print("where are you? (stop id)")
+        stop_id = input()  # e.g. 2148
+        stop_id_str = int(stop_id)
+        print(self.dataLoader.stop_dict[stop_id_str]['stopDesc'])
+        pprint(self.dataLoader.departures[stop_id])
