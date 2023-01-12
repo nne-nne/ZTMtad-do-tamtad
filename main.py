@@ -10,5 +10,5 @@ path_finder = path_finder.PathFinder(data_loader)
 user_input = user_input.UserInput(data_loader, path_finder)
 
 if __name__ == '__main__':
-    user_input.are_stops_connected_dialogue()
-    pass
+    while input() != 'quit':
+        pass

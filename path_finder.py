@@ -5,7 +5,8 @@ class PathFinder:
     def __init__(self, data_loader: DataLoader):
         self.dataLoader = data_loader
 
-    def first_departure_from_ways(self, departures, ways):
+    @staticmethod
+    def first_departure_from_ways(departures, ways):
         for departure in departures:
             if (departure['routeId'], departure['tripId']) in ways:
                 return departure
@@ -17,5 +18,5 @@ class PathFinder:
         connections = self.dataLoader.route_finder(stop_1_id, stop_2_id)
         if len(connections) == 0:
             return
-        best_departure = self.first_departure_from_ways(departures, connections)
+        best_departure = PathFinder.first_departure_from_ways(departures, connections)
         return best_departure
