@@ -5,17 +5,25 @@ from datetime import datetime, timedelta
 
 class TimetableLoader:
     def __init__(self):
-        pass
+        self.cache = dict()
 
     def load(self, routeId, day):
-        data = requests.get(f'https://ckan2.multimediagdansk.pl/stopTimes?date={day}&routeId={routeId}').json()
+        if routeId not in self.cache.keys():
+            data = requests.get(f'https://ckan2.multimediagdansk.pl/stopTimes?date={day}&routeId={routeId}').json()
+            self.cache.update({routeId: data})
+        else:
+            data = self.cache[routeId]
         return data
 
     def decode_departure(self, departure):
         routeId = departure['routeId']
         # day, time = .split()
-        time = datetime.strptime(departure['theoreticalTime'], '%Y-%m-%dT%H:%M:%SZ')
-        time = time + timedelta(hours=1)
+        try:
+            time = datetime.strptime(departure['theoreticalTime'], '%Y-%m-%dT%H:%M:%SZ')
+            time = time + timedelta(hours=1)
+        except:
+            time = datetime.strptime(departure['departureTime'], '%Y-%m-%dT%H:%M:%S')
+
         day, hour = time.strftime('%Y-%m-%dT%H:%M:%S').split('T')
         return routeId, day, hour
 
@@ -27,11 +35,14 @@ class TimetableLoader:
 
     def find_next(self, routeId, tripId, day, stopId, time):
         data = self.load(routeId, day)['stopTimes']
+        t = datetime.strptime(time, '%H:%M:%S')
         for x in data:
             if x['stopId'] == stopId \
-                    and datetime.strptime(x['departureTime'].split('T')[1], '%H:%M:%S') > datetime.strptime(time, '%H:%M:%S') \
+                    and datetime.strptime(x['departureTime'].split('T')[1], '%H:%M:%S') > t \
                     and x['tripId'] == tripId:
+                x.update({'departureTime': x['date']+'T'+x['departureTime'].split('T')[1]})
                 return x
+        pass
 
     def find_specific(self, stopId, time, data):
         for i, x in enumerate(data):

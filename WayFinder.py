@@ -17,16 +17,28 @@ class WayFinder:
         # pprint(possible_ways)
         possible_ways = self.find_lowest_connections(possible_ways)
         closest_ways = [x for x in possible_ways if len(x) == len(possible_ways[0])]
-        # pprint(closest_ways)
+        pprint(closest_ways)
         possible_departures = self.decode_to_departures(closest_ways, departures)
 
         for i, route in enumerate(possible_departures):
             ids = [x[2] for x in closest_ways[i]] + [id2]
             for i, way in enumerate(route):
-                start, stop = self.find_route_time(way, ids[i], ids[i+1])
-                way.update({'start': start.strftime('%H:%M:%S'), 'arrival': stop.strftime('%H:%M:%S'),
-                            'stopId': ids[i], 'nextStopId': ids[i+1]})
-        pprint(possible_departures)
+                if i == 0:
+                    start, stop = self.find_route_time(way, ids[i], ids[i+1])
+                    way.update({'start': start.strftime('%H:%M:%S'), 'arrival': stop.strftime('%H:%M:%S'),
+                                'stopId': ids[i], 'nextStopId': ids[i+1]})
+                else:
+                    routeId, day, hour = self.timetable.decode_departure(way)
+                    hour = route[i-1]['arrival']
+                    way = self.timetable.find_next(routeId, way['tripId'], day, ids[i], hour)
+                    if way is None:
+                        continue
+                    start, stop = self.find_route_time(way, ids[i], ids[i+1])
+                    way.update({'start': start.strftime('%H:%M:%S'), 'arrival': stop.strftime('%H:%M:%S'),
+                                'stopId': ids[i], 'nextStopId': ids[i+1]})
+                    route[i] = way
+
+        # pprint(possible_departures)
         return possible_departures
 
     def push_time(self, way, prev_arrival):
@@ -70,7 +82,7 @@ class WayFinder:
                 if len(new_ways_) > 0:
                     fixed = self.check_ways_connection(id1, id, ways, recursion_count=recursion_count+1)
                     ways_ += self.product(fixed, new_ways_)
-                    pass
+
             new_ways = ways_
         return new_ways
 
@@ -94,11 +106,17 @@ class WayFinder:
                 return departure
         return None
 
+    def complex_find(self, id1, id2):
+        a = wf.find_way(id1, id2)
+        a = [x for x in a if x[-1].get('arrival') is not None]
+        a = sorted(a, key=lambda x: datetime.strptime(x[-1].get('arrival'), '%H:%M:%S'))
+        for x in a:
+            print(x[0].get('start'), x[-1].get('arrival'))
+        return a[0]
 
 if __name__ == '__main__':
     dl = DataLoader().full_prepare()
     # pprint(dl.stops_connections_next)
     wf = WayFinder(dl)
-    wf.find_way(2033, 2100)
+    pprint(wf.complex_find(2231, 2181))
     # pprint(wf.find_way(201, 221))
-#
