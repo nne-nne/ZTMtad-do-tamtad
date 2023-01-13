@@ -17,7 +17,7 @@ class WayFinder:
         # pprint(possible_ways)
         possible_ways = self.find_lowest_connections(possible_ways)
         closest_ways = [x for x in possible_ways if len(x) == len(possible_ways[0])]
-        pprint(closest_ways)
+        # pprint(closest_ways)
         possible_departures = self.decode_to_departures(closest_ways, departures)
 
         for i, route in enumerate(possible_departures):
@@ -112,8 +112,8 @@ class WayFinder:
             a += self.find_way(x[0], x[1])
         a = [x for x in a if x[-1].get('arrival') is not None]
         a = sorted(a, key=lambda x: datetime.strptime(x[-1].get('arrival'), '%H:%M:%S'))
-        for x in a:
-            print(x[0].get('start'), x[-1].get('arrival'))
+        # for x in a:
+        #     print(x[0].get('start'), x[-1].get('arrival'))
         return a[0]
 
 
