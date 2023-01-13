@@ -2,6 +2,8 @@ import json
 from pprint import pprint
 from tqdm import tqdm
 from datetime import datetime
+from threading import Thread
+import time
 
 from webservice import Webservice
 
@@ -35,7 +37,19 @@ class DataLoader:
         self.download_data()
         self.create_stop_dict().create_route_trip()
         self.create_trips_stops().create_stops_connections()
+
+        interval = Thread(target=self.update_interval)
+        interval.start()
+
         return self
+
+    def update_interval(self):
+        start = time.time()
+        webservice = Webservice()
+        while True:
+            if time.time() - start > 60:
+                start = time.time()
+                self.departures = webservice.getJson(departures_url)
 
     def download_data(self):
         webservice = Webservice()
