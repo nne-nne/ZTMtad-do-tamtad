@@ -26,12 +26,20 @@ class WebService {
     }
   }
 
-  static Future<String> pathsRequest() async {
-    final response = await http.get(Uri.parse("http://localhost:8000/paths"));
+  static Future<String> pathsRequest(String stop1, String stop2) async {
+    final response = await http.post(
+      Uri.parse("http://localhost:8000/paths/"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        <String, String>{'stop1_str': stop1, 'stop2_str': stop2},
+      ),
+    );
     if (response.statusCode == HttpStatus.ok) {
-      return response.body;
+      return utf8.decode(response.bodyBytes);
     } else {
-      return 'Error in home request';
+      return 'Error in paths request';
     }
   }
 }

@@ -16,6 +16,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool collectingInput = true;
+  String? stop1field;
+  String? stop2field;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                               padEnds: true,
                               autoPlay: true,
                               autoPlayInterval: const Duration(seconds: 2)),
-                          items: [1, 2, 3].map((i) {
+                          items: [1, 2, 3, 4, 5].map((i) {
                             return Builder(
                               builder: (BuildContext context) {
                                 return Container(
@@ -80,6 +82,11 @@ class _HomePageState extends State<HomePage> {
                   stops: repository.stops,
                   title: "starting location",
                   enabled: collectingInput,
+                  onChanged: (value) {
+                    setState(() {
+                      stop1field = value;
+                    });
+                  },
                 ),
               ),
               Padding(
@@ -88,6 +95,11 @@ class _HomePageState extends State<HomePage> {
                   stops: repository.stops,
                   title: "target location",
                   enabled: collectingInput,
+                  onChanged: (value) {
+                    setState(() {
+                      stop2field = value;
+                    });
+                  },
                 ),
               ),
               Padding(
@@ -101,7 +113,8 @@ class _HomePageState extends State<HomePage> {
                         ? ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                repository.getPaths();
+                                repository.collectPaths(
+                                    stop1field ?? '', stop2field ?? '');
                                 collectingInput = false;
                               });
                             },
