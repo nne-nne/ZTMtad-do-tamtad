@@ -7,12 +7,14 @@ class BusStopSelector extends StatelessWidget {
   final String title;
   final bool enabled;
   final void Function(String?)? onChanged;
+  final String? selectedItem;
   const BusStopSelector({
     super.key,
     required this.stops,
     required this.title,
     required this.onChanged,
     this.enabled = true,
+    this.selectedItem,
   });
 
   List<String> prepareStopsItems(List<Stop> stops) {
@@ -43,7 +45,7 @@ class BusStopSelector extends StatelessWidget {
         ),
       ),
       onChanged: onChanged,
-      selectedItem: null,
+      selectedItem: selectedItem,
     );
   }
 }

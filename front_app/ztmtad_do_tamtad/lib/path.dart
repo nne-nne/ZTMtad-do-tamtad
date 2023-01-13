@@ -7,7 +7,7 @@ class Path {
 
   final List<PathSegment> segments;
   final int totalMinutesLenght;
-  final DateTime arrivalTime;
+  final String arrivalTime;
 }
 
 class PathSegment {
@@ -20,7 +20,7 @@ class PathSegment {
   });
 
   final String route;
-  final DateTime departureTime;
+  final String departureTime;
   final int minutesLength;
   final RouteTypes routeType;
   final String stopDesc;
