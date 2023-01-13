@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Adam\Desktop\ZTMtad-do-tamtad\front_app\ztmtad_do_tamtad\build\windows\x64\Release\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Adam\Desktop\ZTMtad-do-tamtad\front_app\ztmtad_do_tamtad\build\windows\flutter\x64\Release\flutter_assemble</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Adam\Desktop\ZTMtad-do-tamtad\front_app\ztmtad_do_tamtad\build\windows\plugins\window_size\Release\window_size_plugin.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Adam\Desktop\ZTMtad-do-tamtad\front_app\ztmtad_do_tamtad\build\windows\runner\Release\ztmtad_do_tamtad.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Adam\Desktop\ZTMtad-do-tamtad\front_app\ztmtad_do_tamtad\build\windows\x64\Release\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

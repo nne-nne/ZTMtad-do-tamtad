@@ -1,0 +1,13 @@
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/CMakeFiles/INSTALL.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/CMakeFiles/ALL_BUILD.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/flutter/CMakeFiles/flutter_wrapper_app.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/flutter/CMakeFiles/flutter_assemble.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/flutter/CMakeFiles/INSTALL.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/CMakeFiles/ztmtad_do_tamtad.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/CMakeFiles/INSTALL.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/CMakeFiles/ALL_BUILD.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/plugins/window_size/CMakeFiles/window_size_plugin.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/plugins/window_size/CMakeFiles/INSTALL.dir
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/plugins/window_size/CMakeFiles/ALL_BUILD.dir

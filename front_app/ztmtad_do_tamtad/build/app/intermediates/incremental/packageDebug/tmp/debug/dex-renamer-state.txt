@@ -1,0 +1,4 @@
+#Thu Jan 12 23:06:06 CET 2023
+base.0=C\:\\Users\\Adam\\Desktop\\ZTMtad-do-tamtad\\front_app\\ztmtad_do_tamtad\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

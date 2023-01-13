@@ -1,0 +1,16 @@
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/icudtl.dat
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/flutter_windows.dll
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/window_size_plugin.dll
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/AssetManifest.json
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/assets/fonts/Marguerite1/marguerite.ttf
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/assets/images/tram1.png
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/assets/images/tram2.png
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/assets/images/tram3.png
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/assets/images/tram4.png
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/assets/images/tram5.png
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/FontManifest.json
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/NOTICES.Z
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/flutter_assets/shaders/ink_sparkle.frag
+C:/Users/Adam/Desktop/ZTMtad-do-tamtad/front_app/ztmtad_do_tamtad/build/windows/runner/Release/data/app.so
