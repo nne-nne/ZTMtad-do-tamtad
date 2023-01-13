@@ -46,11 +46,17 @@ class PathFinder:
         result = self.way_finder.complex_find(a)
         # poniżej przykład:
         minutes = lambda x: int((datetime.strptime(x['arrival'], '%H:%M:%S') - datetime.strptime(x['start'], '%H:%M:%S')).seconds/60)
-        paths = [PathSegment(str(x['routeId']), self.dataLoader.yyy[x['routeId']]['routeType'], minutes(x), x['start'], x['headsign']) for x in result]
+        try:
+            paths = [PathSegment(str(x['routeId']), self.dataLoader.yyy[x['routeId']]['routeType'], minutes(x), x['start'], x['headsign']) for x in result]
+        except:
+            paths = []
         # ps1 = PathSegment("6", "TRAM", 13, "2023-01-13T06:30", "Miszewskiego")
         # ps2 = PathSegment("5", "TRAM", 7, "2023-01-13T06:45", "Jaśkowa Dolina")
         # ps3 = PathSegment("154", "BUS", 22, "2023-01-13T06:59", "Klonowa")
-        p1 = Path(58, paths, result[-1]['arrival'])
+        try:
+            p1 = Path(int((datetime.strptime(result[-1]['arrival'], '%H:%M:%S') - datetime.strptime(result[0]['start'], '%H:%M:%S')).seconds/60), paths, result[-1]['arrival'])
+        except:
+            p1 = Path(0, paths, result[-1]['arrival'])
         # p2 = Path(23, [ps1, ps2], "2023-01-13T07:01")
         result = [p1]
 
@@ -60,6 +66,6 @@ class PathFinder:
 if __name__ == '__main__':
     dl = DataLoader().full_prepare()
     pf = PathFinder(dl)
-    a = pf.stopnames_user_request_handler('Miszewskiego', 'Klonowa')
+    a = pf.stopnames_user_request_handler('Miszewskiego', 'Rybaki Górne')
     print(a[0].to_json())
 
