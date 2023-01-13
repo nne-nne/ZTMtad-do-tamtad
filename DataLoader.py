@@ -115,11 +115,11 @@ class DataLoader:
     def create_stop_dict(self):
         self.stop_dict = {x['stopId']: x for x in self.stops[self.date]['stops']}
         for stop in self.stop_dict.keys():
-            a = self.stop_names.get(self.stop_dict[stop]['stopName'])
+            a = self.stop_names.get(self.stop_dict[stop]['stopDesc'])
             if a is None:
-                self.stop_names.update({self.stop_dict[stop]['stopName']: [stop]})
+                self.stop_names.update({self.stop_dict[stop]['stopDesc']: [stop]})
             else:
-                self.stop_names.update({self.stop_dict[stop]['stopName']: a+[stop]})
+                self.stop_names.update({self.stop_dict[stop]['stopDesc']: a+[stop]})
         return self
 
     def create_route_trip(self):
