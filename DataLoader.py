@@ -38,8 +38,8 @@ class DataLoader:
         self.create_stop_dict().create_route_trip()
         self.create_trips_stops().create_stops_connections()
 
-        interval = Thread(target=self.update_interval)
-        interval.start()
+        #interval = Thread(target=self.update_interval)
+        #interval.start()
 
         return self
 
