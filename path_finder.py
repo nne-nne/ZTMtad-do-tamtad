@@ -48,10 +48,10 @@ class PathFinder:
         final = []
         for result in results:
             minutes = lambda x: int((datetime.strptime(x['arrival'], '%H:%M:%S') - datetime.strptime(x['start'], '%H:%M:%S')).seconds/60)
-            try:
-                paths = [PathSegment(str(x['routeId']), self.dataLoader.yyy[x['routeId']]['routeType'], minutes(x), x['start'], x['headsign']) for x in result]
-            except:
-                paths = []
+            # try:
+            paths = [PathSegment(str(x['routeId']), self.dataLoader.yyy[x['routeId']]['routeType'], minutes(x), x['start'], self.dataLoader.stop_dict.get(x['stopId'])['stopDesc']) for x in result]
+            # except:
+            #     paths = []
             # ps1 = PathSegment("6", "TRAM", 13, "2023-01-13T06:30", "Miszewskiego")
             # ps2 = PathSegment("5", "TRAM", 7, "2023-01-13T06:45", "Jaśkowa Dolina")
             # ps3 = PathSegment("154", "BUS", 22, "2023-01-13T06:59", "Klonowa")
@@ -68,6 +68,6 @@ class PathFinder:
 if __name__ == '__main__':
     dl = DataLoader().full_prepare()
     pf = PathFinder(dl)
-    a = pf.stopnames_user_request_handler('Miszewskiego', 'Jaśkowa Dolina')
+    a = pf.stopnames_user_request_handler('Łostowice Świętokrzyska', 'Gdańska')
     print(a[0].to_json(), a[1].to_json(), a[2].to_json())
 
