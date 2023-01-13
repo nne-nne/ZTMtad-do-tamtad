@@ -7,6 +7,7 @@ class Webservice:
         pass
 
     def getJson(self, url):
+        print(url)
         x = requests.get(url=url)
         return json.loads(x.text)
 
