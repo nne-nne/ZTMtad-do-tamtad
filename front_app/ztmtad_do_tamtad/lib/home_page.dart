@@ -35,17 +35,25 @@ class _HomePageState extends State<HomePage> {
               collectingInput
                   ? Column(
                       children: [
-                        const Text(
-                          "OnlyTrams",
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.pinkAccent,
-                              shadows: [
-                                Shadow(
-                                    offset: Offset(2.0, 2.0),
-                                    color: Colors.pink)
-                              ]),
+                        Row(
+                          children: const [
+                            Text(
+                              "Only",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.pinkAccent,
+                              ),
+                            ),
+                            Text(
+                              "Only",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.pinkAccent,
+                              ),
+                            ),
+                          ],
                         ),
                         CarouselSlider(
                           options: CarouselOptions(
