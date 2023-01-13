@@ -1,4 +1,7 @@
+import json
+
 from DataLoader import DataLoader
+
 import json
 from datetime import datetime
 
@@ -7,13 +10,17 @@ from path import Path, PathSegment
 from WayFinder import WayFinder
 from itertools import product
 
+from path import Path, PathSegment
+
+
 
 class PathFinder:
     def __init__(self, data_loader: DataLoader):
         self.dataLoader = data_loader
         self.way_finder = WayFinder(self.dataLoader)
 
-    def first_departure_from_ways(self, departures, ways):
+    @staticmethod
+    def first_departure_from_ways(departures, ways):
         for departure in departures:
             if (departure['routeId'], departure['tripId']) in ways:
                 return departure
@@ -25,7 +32,7 @@ class PathFinder:
         connections = self.dataLoader.route_finder_dep(stop_1_id, stop_2_id, departures)
         if len(connections) == 0:
             return
-        best_departure = self.first_departure_from_ways(departures, connections)
+        best_departure = PathFinder.first_departure_from_ways(departures, connections)
         return best_departure
 
     def stopnames_user_request_handler(self, stop1_str, stop2_str):
@@ -55,3 +62,4 @@ if __name__ == '__main__':
     pf = PathFinder(dl)
     a = pf.stopnames_user_request_handler('Miszewskiego', 'Klonowa')
     print(a[0].to_json())
+
