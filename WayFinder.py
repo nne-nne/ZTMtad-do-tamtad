@@ -107,7 +107,7 @@ class WayFinder:
         return None
 
     def complex_find(self, id1, id2):
-        a = wf.find_way(id1, id2)
+        a = self.find_way(id1, id2)
         a = [x for x in a if x[-1].get('arrival') is not None]
         a = sorted(a, key=lambda x: datetime.strptime(x[-1].get('arrival'), '%H:%M:%S'))
         for x in a:
