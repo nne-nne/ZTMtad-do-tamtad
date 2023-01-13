@@ -5,7 +5,13 @@ import 'package:ztmtad_do_tamtad/stop.dart';
 class BusStopSelector extends StatelessWidget {
   final List<Stop> stops;
   final String title;
-  const BusStopSelector({super.key, required this.stops, required this.title});
+  final bool enabled;
+  const BusStopSelector({
+    super.key,
+    required this.stops,
+    required this.title,
+    this.enabled = true,
+  });
 
   List<String> prepareStopsItems(List<Stop> stops) {
     List<Stop> stopsForItems = [];
@@ -23,6 +29,7 @@ class BusStopSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(
+      enabled: enabled,
       popupProps: const PopupProps.dialog(
         showSearchBox: true,
         showSelectedItems: true,

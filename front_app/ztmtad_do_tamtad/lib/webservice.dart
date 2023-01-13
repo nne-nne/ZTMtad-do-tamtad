@@ -25,4 +25,13 @@ class WebService {
       return 'Error in home request';
     }
   }
+
+  static Future<String> pathsRequest() async {
+    final response = await http.get(Uri.parse("http://localhost:8000/paths"));
+    if (response.statusCode == HttpStatus.ok) {
+      return response.body;
+    } else {
+      return 'Error in home request';
+    }
+  }
 }

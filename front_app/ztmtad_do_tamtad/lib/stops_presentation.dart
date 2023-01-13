@@ -9,25 +9,24 @@ class StopsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ZTMRepository>(
       builder: (context, repository, child) {
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Center(
-                child: repository.stopsResponse == null
-                    ? Column(
-                        children: const [
-                          CircularProgressIndicator(),
-                          Text(
-                            "loading bus stops...",
-                          )
-                        ],
-                      )
-                    : const SizedBox.shrink(),
-              ),
-            ),
-          ],
-        );
+        return repository.stopsResponse == null
+            ? Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Center(
+                        child: Column(
+                      children: const [
+                        CircularProgressIndicator(),
+                        Text(
+                          "loading bus stops...",
+                        )
+                      ],
+                    )),
+                  ),
+                ],
+              )
+            : const SizedBox.shrink();
       },
     );
   }
