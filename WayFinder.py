@@ -121,6 +121,7 @@ class WayFinder:
             return a[0]
 
 
+
 if __name__ == '__main__':
     dl = DataLoader().full_prepare()
     # pprint(dl.stops_connections_next)

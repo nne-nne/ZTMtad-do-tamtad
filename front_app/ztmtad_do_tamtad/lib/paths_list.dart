@@ -110,6 +110,10 @@ class PathListTile extends StatelessWidget {
                     ),
                   ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(e.stopDesc),
+                ),
                 const Spacer(),
                 Column(
                   children: [
@@ -128,8 +132,18 @@ class PathListTile extends StatelessWidget {
             children: [
               Column(children: childrenVertical),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "na miejscu: ${DateFormat("kk:mm").format(path.arrivalTime)}",
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
