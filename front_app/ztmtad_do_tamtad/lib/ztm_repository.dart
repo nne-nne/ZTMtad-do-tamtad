@@ -10,6 +10,7 @@ class ZTMRepository extends ChangeNotifier {
   String? homeResponse;
   List<Stop> stops = [];
   List<Path> paths = [];
+  bool loading = false;
 
   Future<void> getStops() async {
     stopsResponse = await WebService.stopsRequest();
@@ -39,29 +40,32 @@ class ZTMRepository extends ChangeNotifier {
   }
 
   Future<void> collectPaths(String stop1, String stop2) async {
+    loading = true;
+    notifyListeners();
     var response = await WebService.pathsRequest(stop1, stop2);
     var jsonResponse = jsonDecode(response);
     for (dynamic path in jsonResponse) {
       List<PathSegment> segments = [];
-      for (dynamic pathSegment in path['path_segments'][0]) {
+      for (dynamic pathSegment in path['path_segments']) {
         segments.add(
           PathSegment(
             route: pathSegment['route'][0],
             routeType: routeTypeFromString(pathSegment['routeType'][0]),
             minutesLength: pathSegment['minutes'][0],
-            departureTime: DateTime.parse(pathSegment['departureTime'][0]),
+            departureTime: pathSegment['departureTime'][0],
             stopDesc: pathSegment['stop_desc'][0],
           ),
         );
       }
       paths.add(
         Path(
-          totalMinutesLenght: path['total_time'][0],
+          totalMinutesLenght: path['total_time'],
           segments: segments,
-          arrivalTime: DateTime.parse(path['arrival_time'][0]),
+          arrivalTime: path['arrival_time'],
         ),
       );
     }
+    loading = false;
     notifyListeners();
   }
 

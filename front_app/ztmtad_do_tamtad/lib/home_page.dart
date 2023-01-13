@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         CarouselSlider(
                           options: CarouselOptions(
-                              height: 300.0,
+                              height: 290.0,
                               padEnds: true,
                               autoPlay: true,
                               autoPlayInterval: const Duration(seconds: 2)),
@@ -75,13 +75,14 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               Padding(
                 padding: collectingInput
-                    ? const EdgeInsets.all(10.0)
+                    ? const EdgeInsets.all(8.0)
                     : const EdgeInsets.only(
                         left: 10.0, bottom: 10.0, right: 10.0, top: 0.0),
                 child: BusStopSelector(
                   stops: repository.stops,
                   title: "starting location",
                   enabled: collectingInput,
+                  selectedItem: stop1field,
                   onChanged: (value) {
                     setState(() {
                       stop1field = value;
@@ -90,11 +91,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
                 child: BusStopSelector(
                   stops: repository.stops,
                   title: "target location",
                   enabled: collectingInput,
+                  selectedItem: stop2field,
                   onChanged: (value) {
                     setState(() {
                       stop2field = value;
@@ -105,7 +107,7 @@ class _HomePageState extends State<HomePage> {
               repository.stops.isNotEmpty
                   ? Padding(
                       padding: collectingInput
-                          ? const EdgeInsets.all(10.0)
+                          ? const EdgeInsets.all(8.0)
                           : const EdgeInsets.all(5.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -146,49 +148,52 @@ class _HomePageState extends State<HomePage> {
               const Divider(),
               collectingInput
                   ? const SizedBox.shrink()
-                  : Column(
-                      children: [
-                        SizedBox(
-                          height: 280,
-                          child: PathsList(paths: repository.paths),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                  : repository.loading
+                      ? const CircularProgressIndicator()
+                      : Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    repository.clearPaths();
-                                    collectingInput = true;
-                                  });
-                                },
-                                style: ButtonStyle(
-                                  elevation:
-                                      const MaterialStatePropertyAll(8.0),
-                                  fixedSize: const MaterialStatePropertyAll(
-                                      Size(150, 50)),
-                                  shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: FittedBox(
-                                    child: Text(
-                                      "następna trasa",
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                            SizedBox(
+                              height: 280,
+                              child: PathsList(paths: repository.paths),
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(30.0),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        repository.clearPaths();
+                                        collectingInput = true;
+                                      });
+                                    },
+                                    style: ButtonStyle(
+                                      elevation:
+                                          const MaterialStatePropertyAll(8.0),
+                                      fixedSize: const MaterialStatePropertyAll(
+                                          Size(150, 50)),
+                                      shape: MaterialStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: FittedBox(
+                                        child: Text(
+                                          "następna trasa",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         )
-                      ],
-                    )
             ],
           ),
         );

@@ -117,7 +117,7 @@ class PathListTile extends StatelessWidget {
                 const Spacer(),
                 Column(
                   children: [
-                    Text(DateFormat('kk:mm').format(e.departureTime)),
+                    Text(e.departureTime),
                     Text("${e.minutesLength} min")
                   ],
                 ),
@@ -137,7 +137,7 @@ class PathListTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "na miejscu: ${DateFormat("kk:mm").format(path.arrivalTime)}",
+                      "na miejscu: ${path.arrivalTime}",
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
