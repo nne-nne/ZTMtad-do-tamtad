@@ -78,10 +78,10 @@ class PathListTile extends StatelessWidget {
                 Container(
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                      color: Colors.grey),
+                      color: Color.fromARGB(126, 233, 199, 167)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: Text(e.route),
+                    child: FittedBox(child: Text(e.route)),
                   ),
                 ),
               ],
@@ -102,17 +102,22 @@ class PathListTile extends StatelessWidget {
                     Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          color: Colors.grey),
+                          color: Color.fromARGB(255, 235, 201, 110)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text(e.route),
+                        child: FittedBox(child: Text(e.route)),
                       ),
                     ),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Text(e.stopDesc),
+                  child: SizedBox(
+                      width: 160,
+                      child: FittedBox(
+                          alignment: Alignment.centerLeft,
+                          fit: BoxFit.scaleDown,
+                          child: Text(e.stopDesc))),
                 ),
                 const Spacer(),
                 Column(
@@ -127,43 +132,47 @@ class PathListTile extends StatelessWidget {
         )
         .toList();
     return active
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(children: childrenVertical),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "na miejscu: ${path.arrivalTime}",
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+        ? Container(
+            decoration:
+                const BoxDecoration(color: Color.fromRGBO(46, 80, 144, 0.4)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(children: childrenVertical),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "na miejscu: ${path.arrivalTime}",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "${path.totalMinutesLenght} min",
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "${path.totalMinutesLenght} min",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const Divider()
-            ],
+                  ],
+                ),
+                const Divider()
+              ],
+            ),
           )
         : InkWell(
             onTap: () {
               onTapCallback(index);
             },
-            highlightColor: Colors.amber,
+            highlightColor: Color.fromRGBO(46, 80, 144, 1.0),
             child: Column(
               children: [
                 Row(

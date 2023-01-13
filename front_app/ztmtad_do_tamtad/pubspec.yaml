@@ -86,10 +86,7 @@ flutter:
   fonts:
     - family: Marguerite
       fonts:
-        - asset: assets/fonts/marguerite.ttf
-    - family: Gardenia
-      fonts:
-        - asset: assets/fonts/gardenia-extrabold.otf
+        - asset: assets/fonts/Marguerite1/marguerite.ttf
 
   #   - family: Trajan Pro
   #     fonts:

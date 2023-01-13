@@ -24,9 +24,11 @@ class _HomePageState extends State<HomePage> {
     return Consumer<ZTMRepository>(
       builder: (context, repository, child) {
         return Scaffold(
+          backgroundColor: Color.fromARGB(255, 250, 250, 228),
           appBar: AppBar(
             leading: const Icon(Icons.tram),
             title: const Text("ZTMtąd tam"),
+            backgroundColor: Color.fromRGBO(46, 80, 144, 1.0),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -36,47 +38,50 @@ class _HomePageState extends State<HomePage> {
                   ? Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Text(
                               "Only",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.pinkAccent,
+                                color: Color.fromARGB(255, 18, 29, 29),
                               ),
                             ),
                             Text(
-                              "Only",
+                              "Trams",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.pinkAccent,
+                                fontFamily: 'Marguerite',
+                                color: Color.fromRGBO(0, 209, 209, 1),
                               ),
                             ),
                           ],
                         ),
-                        CarouselSlider(
-                          options: CarouselOptions(
-                              height: 290.0,
-                              padEnds: true,
-                              autoPlay: true,
-                              autoPlayInterval: const Duration(seconds: 2)),
-                          items: [1, 2, 3, 4, 5].map((i) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Container(
-                                    width: 250,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 5.0),
-                                    child: Image.asset(
-                                      'assets/images/tram$i.png',
-                                      width: 150,
-                                      height: 250,
-                                    ));
-                              },
-                            );
-                          }).toList(),
-                        ),
+                        repository.stops.isNotEmpty
+                            ? CarouselSlider(
+                                options: CarouselOptions(
+                                    height: 290.0,
+                                    padEnds: true,
+                                    autoPlay: true,
+                                    autoPlayInterval:
+                                        const Duration(seconds: 2)),
+                                items: [1, 2, 3, 4, 5].map((i) {
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                          width: 250,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 5.0),
+                                          child: Image.asset(
+                                            'assets/images/tram$i.png',
+                                            width: 150,
+                                            height: 250,
+                                          ));
+                                    },
+                                  );
+                                }).toList(),
+                              )
+                            : const SizedBox.shrink(),
                       ],
                     )
                   : const SizedBox.shrink(),
@@ -130,6 +135,8 @@ class _HomePageState extends State<HomePage> {
                                     });
                                   },
                                   style: ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Color.fromRGBO(46, 80, 144, 1.0)),
                                     elevation:
                                         const MaterialStatePropertyAll(8.0),
                                     fixedSize: const MaterialStatePropertyAll(
@@ -177,6 +184,8 @@ class _HomePageState extends State<HomePage> {
                                       });
                                     },
                                     style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Color.fromRGBO(46, 80, 144, 1.0)),
                                       elevation:
                                           const MaterialStatePropertyAll(8.0),
                                       fixedSize: const MaterialStatePropertyAll(
