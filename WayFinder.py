@@ -106,17 +106,20 @@ class WayFinder:
                 return departure
         return None
 
-    def complex_find(self, id1, id2):
-        a = self.find_way(id1, id2)
+    def complex_find(self, n):
+        a = []
+        for x in n:
+            a += self.find_way(x[0], x[1])
         a = [x for x in a if x[-1].get('arrival') is not None]
         a = sorted(a, key=lambda x: datetime.strptime(x[-1].get('arrival'), '%H:%M:%S'))
         for x in a:
             print(x[0].get('start'), x[-1].get('arrival'))
         return a[0]
 
+
 if __name__ == '__main__':
     dl = DataLoader().full_prepare()
     # pprint(dl.stops_connections_next)
     wf = WayFinder(dl)
-    pprint(wf.complex_find(2231, 2181))
+    pprint(wf.complex_find([[2231, 2181]]))
     # pprint(wf.find_way(201, 221))

@@ -1,8 +1,8 @@
 class Path:
     def __init__(self, total_time: int, path_segments, arrival_time: str):
-        self.total_time = total_time,
-        self.path_segments = path_segments,
-        self.arrival_time = arrival_time,  # clocktime of arrival at the target
+        self.total_time = total_time
+        self.path_segments = path_segments
+        self.arrival_time = arrival_time # clocktime of arrival at the target
 
     def to_json(self):
         segment_jsons = []

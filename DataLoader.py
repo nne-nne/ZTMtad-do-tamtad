@@ -13,12 +13,14 @@ class DataLoader:
         self.trips = None
         self.stopsintrip = None
         self.stop_dict = None  # dict informacji o stopach, klucze to stopID
+        self.stop_names = dict()
         self.trips_stops = None  # dict, kluczem jest krokta (routeID, tripID), wartość to lista stopID na trasie
         self.stop_tp = None  # stopId na pary routeId, tripId
         self.stops_connections_next = None
         self.stops_connections_prev = None
         self.rozklad_jazdy = None  # jazda z
         self.date = datetime.today().strftime('%Y-%m-%d')
+        self.yyy = None
 
     def full_prepare(self):
         self.load_from_files().create_stop_dict().create_route_trip()
@@ -92,13 +94,19 @@ class DataLoader:
         pprint(ways_)
         return ways
 
-
     def create_stop_dict(self):
         self.stop_dict = {x['stopId']: x for x in self.stops[self.date]['stops']}
+        for stop in self.stop_dict.keys():
+            a = self.stop_names.get(self.stop_dict[stop]['stopName'])
+            if a is None:
+                self.stop_names.update({self.stop_dict[stop]['stopName']: [stop]})
+            else:
+                self.stop_names.update({self.stop_dict[stop]['stopName']: a+[stop]})
         return self
 
     def create_route_trip(self):
         route_trip = {x['routeId']: [] for x in self.routes[self.date]['routes']}
+        self.yyy = {x['routeId']: x for x in self.routes[self.date]['routes']}
         for x in self.trips[self.date]['trips']:
             route_trip.update({x['routeId']: route_trip[x['routeId']] + [x['tripId']]})
         self.route_trip = route_trip
@@ -126,9 +134,10 @@ class DataLoader:
 
 if __name__ == "__main__":
     dl = DataLoader().full_prepare()
-    pprint(dl.stop_dict[201])
-    pprint(dl.stop_dict[2231])
-    pprint(dl.stop_dict[221])
+    pprint(dl.stop_names)
+    # pprint(dl.stop_dict[201])
+    # pprint(dl.stop_dict[2231])
+    # pprint(dl.stop_dict[221])
     # pprint(dl.trips_stops)
     # print(dl.route_finder(292, 209))
     # print(dl.route_finder(209, 292))
