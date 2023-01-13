@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ztmtad_do_tamtad/bus_stop_selector.dart';
@@ -28,7 +29,48 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              const StopsList(),
+              const StopsLoadingIndicator(),
+              collectingInput
+                  ? Column(
+                      children: [
+                        const Text(
+                          "OnlyTrams",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.pinkAccent,
+                              shadows: [
+                                Shadow(
+                                    offset: Offset(2.0, 2.0),
+                                    color: Colors.pink)
+                              ]),
+                        ),
+                        CarouselSlider(
+                          options: CarouselOptions(
+                              height: 300.0,
+                              padEnds: true,
+                              autoPlay: true,
+                              autoPlayInterval: const Duration(seconds: 2)),
+                          items: [1, 2, 3].map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                    width: 250,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 5.0),
+                                    child: Image.asset(
+                                      'assets/images/tram$i.png',
+                                      width: 150,
+                                      height: 250,
+                                    ));
+                              },
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+              const Spacer(),
               Padding(
                 padding: collectingInput
                     ? const EdgeInsets.all(10.0)
@@ -50,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding: collectingInput
-                    ? const EdgeInsets.all(50.0)
+                    ? const EdgeInsets.all(10.0)
                     : const EdgeInsets.all(5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,

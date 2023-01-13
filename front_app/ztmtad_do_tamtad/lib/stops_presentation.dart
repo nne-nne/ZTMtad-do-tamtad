@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ztmtad_do_tamtad/ztm_repository.dart';
 
-class StopsList extends StatelessWidget {
-  const StopsList({super.key});
+class StopsLoadingIndicator extends StatelessWidget {
+  const StopsLoadingIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {
