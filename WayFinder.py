@@ -28,15 +28,18 @@ class WayFinder:
                     way.update({'start': start.strftime('%H:%M:%S'), 'arrival': stop.strftime('%H:%M:%S'),
                                 'stopId': ids[i], 'nextStopId': ids[i+1]})
                 else:
-                    routeId, day, hour = self.timetable.decode_departure(way)
-                    hour = route[i-1]['arrival']
-                    way = self.timetable.find_next(routeId, way['tripId'], day, ids[i], hour)
-                    if way is None:
+                    try:
+                        routeId, day, hour = self.timetable.decode_departure(way)
+                        hour = route[i-1]['arrival']
+                        way = self.timetable.find_next(routeId, way['tripId'], day, ids[i], hour)
+                        if way is None:
+                            continue
+                        start, stop = self.find_route_time(way, ids[i], ids[i+1])
+                        way.update({'start': start.strftime('%H:%M:%S'), 'arrival': stop.strftime('%H:%M:%S'),
+                                    'stopId': ids[i], 'nextStopId': ids[i+1]})
+                        route[i] = way
+                    except:
                         continue
-                    start, stop = self.find_route_time(way, ids[i], ids[i+1])
-                    way.update({'start': start.strftime('%H:%M:%S'), 'arrival': stop.strftime('%H:%M:%S'),
-                                'stopId': ids[i], 'nextStopId': ids[i+1]})
-                    route[i] = way
 
         # pprint(possible_departures)
         return possible_departures
