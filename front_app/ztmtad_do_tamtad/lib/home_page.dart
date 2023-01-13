@@ -102,43 +102,47 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-              Padding(
-                padding: collectingInput
-                    ? const EdgeInsets.all(10.0)
-                    : const EdgeInsets.all(5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    collectingInput
-                        ? ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                repository.collectPaths(
-                                    stop1field ?? '', stop2field ?? '');
-                                collectingInput = false;
-                              });
-                            },
-                            style: ButtonStyle(
-                              elevation: const MaterialStatePropertyAll(8.0),
-                              fixedSize:
-                                  const MaterialStatePropertyAll(Size(150, 50)),
-                              shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "szukaj",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
-                ),
-              ),
+              repository.stops.isNotEmpty
+                  ? Padding(
+                      padding: collectingInput
+                          ? const EdgeInsets.all(10.0)
+                          : const EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          collectingInput
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      repository.collectPaths(
+                                          stop1field ?? '', stop2field ?? '');
+                                      collectingInput = false;
+                                    });
+                                  },
+                                  style: ButtonStyle(
+                                    elevation:
+                                        const MaterialStatePropertyAll(8.0),
+                                    fixedSize: const MaterialStatePropertyAll(
+                                        Size(150, 50)),
+                                    shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                    ),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "szukaj",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink(),
               const Divider(),
               collectingInput
                   ? const SizedBox.shrink()
