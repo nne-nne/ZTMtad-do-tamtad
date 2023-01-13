@@ -14,7 +14,7 @@ class PathFinder:
         departures = self.dataLoader.departures[str(stop_1_id)]['departures']
         if len(departures) == 0:
             return None
-        connections = self.dataLoader.route_finder(stop_1_id, stop_2_id)
+        connections = self.dataLoader.route_finder_dep(stop_1_id, stop_2_id, departures)
         if len(connections) == 0:
             return
         best_departure = self.first_departure_from_ways(departures, connections)
