@@ -1,6 +1,7 @@
 import json
 from pprint import pprint
 from tqdm import tqdm
+from datetime import datetime
 
 
 class DataLoader:
@@ -17,6 +18,7 @@ class DataLoader:
         self.stops_connections_next = None
         self.stops_connections_prev = None
         self.rozklad_jazdy = None  # jazda z
+        self.date = datetime.today().strftime('%Y-%m-%d')
 
     def full_prepare(self):
         self.load_from_files().create_stop_dict().create_route_trip()
@@ -50,7 +52,7 @@ class DataLoader:
         self.stop_tp = dict()
         for z in tqdm(route_trip.keys()):
             for y in route_trip[z]:
-                a = [x for x in self.stopsintrip['2023-01-13']['stopsInTrip'] if
+                a = [x for x in self.stopsintrip[self.date]['stopsInTrip'] if
                      x['tripId'] == y and x['routeId'] == z]
                 a = sorted(a, key=lambda x: x['stopSequence'], reverse=False)
                 names = [x['stopId'] for x in a]
@@ -92,18 +94,18 @@ class DataLoader:
 
 
     def create_stop_dict(self):
-        self.stop_dict = {x['stopId']: x for x in self.stops['2023-01-13']['stops']}
+        self.stop_dict = {x['stopId']: x for x in self.stops[self.date]['stops']}
         return self
 
     def create_route_trip(self):
-        route_trip = {x['routeId']: [] for x in self.routes['2023-01-13']['routes']}
-        for x in self.trips['2023-01-13']['trips']:
+        route_trip = {x['routeId']: [] for x in self.routes[self.date]['routes']}
+        for x in self.trips[self.date]['trips']:
             route_trip.update({x['routeId']: route_trip[x['routeId']] + [x['tripId']]})
         self.route_trip = route_trip
         return self
 
     def r_t_route(self, r_id, t_id):
-        a = [x for x in self.stopsintrip['2023-01-13']['stopsInTrip'] if x['tripId'] == t_id and x['routeId'] == r_id]
+        a = [x for x in self.stopsintrip[self.date]['stopsInTrip'] if x['tripId'] == t_id and x['routeId'] == r_id]
         a = sorted(a, key=lambda x: x['stopSequence'], reverse=False)
         # print(a)
         for x in a:
