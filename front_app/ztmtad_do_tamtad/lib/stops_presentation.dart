@@ -11,27 +11,19 @@ class StopsList extends StatelessWidget {
       builder: (context, repository, child) {
         return Column(
           children: [
-            const Text("Here goes stops list yo"),
-            SizedBox(
-              height: 200,
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Center(
-                      child: repository.stopsResponse == null
-                          ? Column(
-                              children: const [
-                                CircularProgressIndicator(),
-                                Text(
-                                  "loading bus stops...",
-                                )
-                              ],
-                            )
-                          : const Text("bus stops loaded ✔️"),
-                    ),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Center(
+                child: repository.stopsResponse == null
+                    ? Column(
+                        children: const [
+                          CircularProgressIndicator(),
+                          Text(
+                            "loading bus stops...",
+                          )
+                        ],
+                      )
+                    : const SizedBox.shrink(),
               ),
             ),
           ],
