@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ztmtad_do_tamtad/stop.dart';
 import 'package:ztmtad_do_tamtad/path.dart';
 import 'package:ztmtad_do_tamtad/webservice.dart';
@@ -15,7 +16,8 @@ class ZTMRepository extends ChangeNotifier {
   Future<void> getStops() async {
     stopsResponse = await WebService.stopsRequest();
     var stopsJson = jsonDecode(stopsResponse!);
-    var todaysStops = stopsJson['2023-01-13']['stops'];
+    var todaysStops =
+        stopsJson[DateFormat('yyyy-MM-dd').format(DateTime.now())]['stops'];
     for (Map<String, dynamic> stop in todaysStops) {
       stops.add(
         Stop(
